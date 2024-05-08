@@ -29,8 +29,8 @@ export default function RootLayout({ children }) {
             </nav>
             {/* 로그인 */}
             <nav className="flex gap-x-4">
-              <Button variant="outline" size="sm"><Link href="join">회원가입</Link></Button>
-              <Button size="sm"><Link href="login">로그인</Link></Button>
+            <Link href="/join"><Button variant="outline" size="sm">회원가입</Button></Link>
+            <Link href="/login"><Button size="sm">로그인</Button></Link>
             </nav>
           </div>
         </header>
