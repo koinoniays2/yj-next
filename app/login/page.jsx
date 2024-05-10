@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { login } from "./action";
 
 export default function Login() {
   return (
@@ -14,9 +15,9 @@ export default function Login() {
             hover:border-b border-blue-400">회원가입</Link></CardDescription>
           </CardHeader>
           <CardContent>
-            <form className="flex flex-col gap-y-4">
-              <Input type="text" placeholder="아이디" required />
-              <Input type="password" placeholder="비밀번호" required />
+            <form action={login} className="flex flex-col gap-y-4">
+              <Input type="text" placeholder="아이디" name="username" required />
+              <Input type="password" placeholder="비밀번호" name="password" required />
               <Button type="submit" className="w-full">로그인</Button>
             </form>
           </CardContent>

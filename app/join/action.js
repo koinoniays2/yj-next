@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/db";
 import bcrypt from "bcrypt";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 
 // 중복검사
@@ -61,20 +62,22 @@ export async function createAccount(prevState, formData) {
     return result.error.flatten(); // state에 저장되어 클라이언트에서 사용
   }
 
-  const username = formData.get("username"); // input type name의 값
+  /* const username = formData.get("username"); // input type name의 값
   const email = formData.get("email");
   const password = formData.get("password");
   const password2 = formData.get("password2");
+  */
 
   // 암호화 await해줘야함
-  const hashdPassword = await bcrypt.hash(password, 10);
+  const hashdPassword = await bcrypt.hash(result.data.password, 10);
 
   await prisma.user.create({
     data: {
-      username,
-      email,
+      username : result.data.username,
+      email : result.data.email,
       password: hashdPassword
     }
-  }) //npx prisma studio 실행해서 데이터 확인
+  }); //npx prisma studio 실행해서 데이터 확인
 
+  return redirect("/settings");
 }
