@@ -16,9 +16,13 @@ datasource db {
 
 model User {
   id String @id @default(uuid())
+  name String?
   username String @unique
   email String? @unique
   mobile String? @unique
   password String?
   avatar String?
 }
+
+// npx prisma db push -> 구조 변경됐을 때 해주기
+// 필수요소 아니면 : ?
